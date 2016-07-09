@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="main_background" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Label alignment="CENTER" contentDisplay="TOP" prefHeight="100.0" prefWidth="800.0" style="-fx-background-color: #000000;" text="Taekwondo" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="TOP" prefHeight="100.0" prefWidth="800.0" text="Taekwondo Draft" BorderPane.alignment="CENTER">
          <font>
             <Font name="Roboto Bold Italic" size="64.0" />
          </font>
@@ -24,6 +26,32 @@
       </Label>
    </top>
    <center>
-      <AnchorPane prefHeight="460.0" prefWidth="779.0" style="-fx-background-image: url(&quot;/images/t800.png&quot;);" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="460.0" prefWidth="779.0" style="-fx-background-image: url(&quot;/images/t800.png&quot;);" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fillWidth="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="300.0" spacing="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="300.0" styleClass="action_btns" text="CONTINUAR" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="250.0" styleClass="action_btns" text="NOVO CAMPEONATO" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="200.0" styleClass="action_btns" text="DEFINIÇÕES" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="150.0" styleClass="action_btns" text="SAIR" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children></AnchorPane>
    </center>
 </BorderPane>

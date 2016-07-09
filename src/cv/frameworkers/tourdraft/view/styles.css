@@ -1,0 +1,17 @@
+.action_btns{
+    -fx-border-radius: 0 20 20 0;
+    -fx-background-radius: 0 20 20 0;
+    -fx-border-color: #555555;
+    -fx-pref-height: 30;
+    -fx-cursor: hand;
+    -fx-border-width: 1;
+}
+
+.action_btns:hover{
+    -fx-border-width: 2;
+    -fx-border-color: #ffffff;
+}
+
+.main_background{
+    -fx-background-color: #000000;
+}
