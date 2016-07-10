@@ -34,4 +34,8 @@ public class AppMain extends Application {
             e.printStackTrace();
         }
     }
+
+    public void irContinuar(){}
+    public void irNovo(){}
+    public void irSettings(){}
 }

@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="main_background" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="main_background" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cv.frameworkers.tourdraft.view.TelaInicialController">
    <top>
       <Label alignment="CENTER" contentDisplay="TOP" prefHeight="100.0" prefWidth="800.0" text="Taekwondo Draft" BorderPane.alignment="CENTER">
          <font>
@@ -30,22 +30,22 @@
          <children>
             <VBox fillWidth="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="300.0" spacing="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="300.0" styleClass="action_btns" text="CONTINUAR" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#btnContinuarClick" prefHeight="30.0" prefWidth="300.0" styleClass="action_btns" text="CONTINUAR" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="250.0" styleClass="action_btns" text="NOVO CAMPEONATO" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#btnNovoClick" prefHeight="30.0" prefWidth="250.0" styleClass="action_btns" text="NOVO CAMPEONATO" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="200.0" styleClass="action_btns" text="DEFINIÇÕES" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#btnDefinicoesClick" prefHeight="30.0" prefWidth="200.0" styleClass="action_btns" text="DEFINIÇÕES" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton buttonType="RAISED" prefHeight="30.0" prefWidth="150.0" styleClass="action_btns" text="SAIR" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" onAction="#btnSairClick" prefHeight="30.0" prefWidth="150.0" styleClass="action_btns" text="SAIR" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
