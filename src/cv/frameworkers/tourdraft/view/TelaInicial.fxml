@@ -26,7 +26,7 @@
       </Label>
    </top>
    <center>
-      <AnchorPane prefHeight="460.0" prefWidth="779.0" style="-fx-background-image: url(&quot;/images/t800.png&quot;);" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="500.0" prefWidth="800.0" style="-fx-background-image: url(&quot;/images/t800.png&quot;);" BorderPane.alignment="CENTER">
          <children>
             <VBox fillWidth="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="300.0" spacing="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                <children>

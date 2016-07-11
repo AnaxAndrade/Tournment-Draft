@@ -1,6 +1,7 @@
 package cv.frameworkers.tourdraft.view;
 
 import cv.frameworkers.tourdraft.AppMain;
+import cv.frameworkers.tourdraft.base.ChildScreenController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,36 +11,28 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Created by AnaxAndrade on 09-07-2016.
+ * Criado por AnaxAndrade on 09-07-2016.
  */
-public class TelaInicialController implements Initializable{
-
-    AppMain mainApp;
+public class TelaInicialController extends ChildScreenController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    //Obter Referência da Classe Principal
-    public void setMainApp(AppMain mainApp) {
-        this.mainApp = mainApp;
-
-    }
-
     @FXML
     private void btnContinuarClick(ActionEvent e){
-        mainApp.irContinuar();
+        getBaseScreenController().setScreen(AppMain.TELA_CONTINUAR_TORNEIO);
     }
 
     @FXML
     private void btnNovoClick(ActionEvent e){
-        mainApp.irNovo();
+        getBaseScreenController().setScreen(AppMain.TELA_NOVO_TORNEIO);
     }
 
     @FXML
     private void btnDefinicoesClick(ActionEvent e){
-        mainApp.irSettings();
+        getBaseScreenController().setScreen("Defs");
     }
 
     @FXML

@@ -22,6 +22,8 @@ import java.util.HashMap;
 public class RootScreenController extends StackPane {
     private HashMap<String, Node> screens = new HashMap<>();
 
+    AppMain mainApp;
+
     public RootScreenController() {
 
     }
@@ -44,10 +46,11 @@ public class RootScreenController extends StackPane {
             Parent loadScreen = (Parent) myLoader.load();
             ChildScreenController myScreenControler = ((ChildScreenController) myLoader.getController());
             myScreenControler.setScreenParent(this);
+            myScreenControler.setAppMain(mainApp);
             addScreen(name, loadScreen);
             return true;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -87,9 +90,14 @@ public class RootScreenController extends StackPane {
             return true;
         } else {
             System.out.println("screen hasn't been loaded!!! \n");
+
             return false;
         }
 
+    }
+
+    public void setMainApp(AppMain appMain){
+        this.mainApp = appMain;
     }
 
     //This method will remove the screen with the given name from the collection of screens

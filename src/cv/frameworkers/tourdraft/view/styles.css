@@ -15,3 +15,8 @@
 .main_background{
     -fx-background-color: #000000;
 }
+
+
+.jfx-hamburger StackPane{
+    -fx-background-color : #262626;
+}

@@ -32,11 +32,11 @@ public class Torneio {
     }
 
     public Torneio() {
-        this(null, null, null, null, null, null);
+        this(new SimpleIntegerProperty(-1), new SimpleStringProperty(""), new SimpleIntegerProperty(-1), new SimpleBooleanProperty(false), new SimpleBooleanProperty(false), FXCollections.observableArrayList());
     }
 
     public Torneio(int id) {
-        this(new SimpleIntegerProperty(id), null, null, null, null, null);
+        this(new SimpleIntegerProperty(id), new SimpleStringProperty(""), new SimpleIntegerProperty(-1), new SimpleBooleanProperty(false), new SimpleBooleanProperty(false), FXCollections.observableArrayList());
     }
 
     public int getId() {
