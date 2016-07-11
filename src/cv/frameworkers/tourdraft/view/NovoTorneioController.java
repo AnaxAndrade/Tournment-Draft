@@ -125,7 +125,7 @@ public class NovoTorneioController extends ChildScreenController implements Init
             this.novoTorneio.setTitulo(tituloCompeticao.getText());
             this.getAppMain().adicionaTorneio(novoTorneio);
 
-            getBaseScreenController().setScreen(AppMain.TELA_INICIAL);
+            getBaseScreenController().setScreen(AppMain.TELA_AREA_TORNEIO);
         }else {
             //TODO MOSTRAR DIALOG DE COMPETIDORES INSUFICIENTE
         }

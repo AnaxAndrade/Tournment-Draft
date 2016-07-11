@@ -21,6 +21,7 @@ import java.util.HashMap;
  */
 public class RootScreenController extends StackPane {
     private HashMap<String, Node> screens = new HashMap<>();
+    private HashMap<String, ChildScreenController> screensControllers = new HashMap<>();
 
     AppMain mainApp;
 
@@ -29,8 +30,9 @@ public class RootScreenController extends StackPane {
     }
 
     //Add the screen to the collection
-    public void addScreen(String name, Node screen) {
+    public void addScreen(String name, Node screen, ChildScreenController controller) {
         screens.put(name, screen);
+        screensControllers.put(name, controller);
     }
 
     //Returns the Node with the appropriate name
@@ -47,7 +49,7 @@ public class RootScreenController extends StackPane {
             ChildScreenController myScreenControler = ((ChildScreenController) myLoader.getController());
             myScreenControler.setScreenParent(this);
             myScreenControler.setAppMain(mainApp);
-            addScreen(name, loadScreen);
+            addScreen(name, loadScreen, myScreenControler);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,6 +73,7 @@ public class RootScreenController extends StackPane {
                             public void handle(ActionEvent t) {
                                 getChildren().remove(0);                    //remove the displayed screen
                                 getChildren().add(0, screens.get(name));     //add the screen
+                                screensControllers.get(name).onResume();
                                 Timeline fadeIn = new Timeline(
                                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
                                         new KeyFrame(new Duration(500), new KeyValue(opacity, 1.0)));
@@ -82,6 +85,7 @@ public class RootScreenController extends StackPane {
             } else {
                 setOpacity(0.0);
                 getChildren().add(screens.get(name));       //no one else been displayed, then just show
+                screensControllers.get(name).onResume();
                 Timeline fadeIn = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
                         new KeyFrame(new Duration(500), new KeyValue(opacity, 1.0)));

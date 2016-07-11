@@ -26,4 +26,6 @@ public abstract class ChildScreenController {
     public void setAppMain(AppMain main) {
         this.main = main;
     }
+
+    public void onResume(){}
 }

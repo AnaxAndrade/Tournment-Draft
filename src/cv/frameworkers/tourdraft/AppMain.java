@@ -42,8 +42,8 @@ public class AppMain extends Application {
         down.setMainApp(this);
         down.loadScreen(TELA_INICIAL, "view/TelaInicial.fxml");
         down.loadScreen(TELA_NOVO_TORNEIO, "view/NovoTorneio.fxml");
+        down.loadScreen(TELA_AREA_TORNEIO, "view/AreaCompeticao.fxml");
         //down.loadScreen(TELA_CONTINUAR_TORNEIO, "view/ContinuarTorneio.fxml");
-        //down.loadScreen(TELA_AREA_TORNEIO, "view/AreaTorneio.fxml");
 
         //Carregar tela Inicial
         down.setScreen(AppMain.TELA_INICIAL);
