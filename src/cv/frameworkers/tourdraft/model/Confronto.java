@@ -2,6 +2,7 @@ package cv.frameworkers.tourdraft.model;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -27,15 +28,23 @@ public class Confronto {
         this.p2 = p2;
         this.s1 = s1;
         this.s2 = s2;
+        //1 ou 2
         this.winnerNumber = winnerNumber;
         this.winnerId = winnerId;
     }
 
     public Confronto(int id) {
-        this(new SimpleIntegerProperty(id), null, null, null,null, null,null);
+        this.id = new SimpleIntegerProperty(id);
+        this.p1 = new SimpleObjectProperty<Competidor>();
+        this.p2 = new SimpleObjectProperty<Competidor>();
+        this.s1 = new SimpleIntegerProperty(0);
+        this.s2 = new SimpleIntegerProperty(0);
+        this.winnerNumber = new SimpleIntegerProperty(-1);
+        this.winnerId = new SimpleIntegerProperty(-1);
     }
 
     public Confronto() {
+        this(-1);
     }
 
     public int getId() {

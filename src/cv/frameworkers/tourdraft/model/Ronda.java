@@ -26,8 +26,10 @@ public class Ronda {
         this.confrontos = confrontos;
     }
 
-    public Ronda(int id) {
-        this(new SimpleIntegerProperty(id), null, null, null);
+    public Ronda(int id){
+        this.id = new SimpleIntegerProperty(id);
+        this.titulo = new SimpleStringProperty("");
+        this.terminado = new SimpleBooleanProperty(false);
     }
 
     public Ronda() {
