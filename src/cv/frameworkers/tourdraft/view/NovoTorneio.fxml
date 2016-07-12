@@ -38,8 +38,8 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ListView fx:id="inputsListView" layoutX="65.0" layoutY="216.0" prefHeight="200.0" prefWidth="341.0" />
-      <Label layoutX="65.0" layoutY="185.0" text="Competidores" textFill="#262626">
+      <ListView fx:id="inputsListView" layoutX="225.0" layoutY="221.0" prefHeight="200.0" prefWidth="341.0" />
+      <Label layoutX="225.0" layoutY="186.0" text="Competidores" textFill="#262626">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -54,7 +54,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton onAction="#btnSaveCompeticaoClick" prefHeight="39.0" prefWidth="114.0" style="-fx-background-color: rgb(77,102,204);;" text="Guardar" textFill="WHITE">
+            <JFXButton onAction="#btnSaveCompeticaoClick" prefHeight="39.0" prefWidth="114.0" style="-fx-background-color: rgb(77,102,204);;" text="Iniciar" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -64,7 +64,7 @@
             </JFXButton>
          </buttons>
       </ButtonBar>
-      <JFXButton layoutX="356.0" layoutY="429.0" onAction="#addCompetidor" style="-fx-background-color: #cccccc;" text="+">
+      <JFXButton layoutX="401.0" layoutY="429.0" onAction="#addCompetidor" style="-fx-background-color: #cccccc;" text="+">
          <font>
             <Font size="24.0" />
          </font>
@@ -72,7 +72,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton layoutX="297.0" layoutY="429.0" onAction="#removeCompetidor" style="-fx-background-color: #cccccc;" text="-">
+      <JFXButton layoutX="334.0" layoutY="429.0" onAction="#removeCompetidor" prefHeight="51.0" prefWidth="50.0" style="-fx-background-color: #cccccc;" text="-">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

@@ -71,7 +71,7 @@ public class NovoTorneioController extends ChildScreenController implements Init
 
         novoTorneio = new Torneio();
         inputsListView.setItems(this.novoTorneio.getCompetidores());
-
+        tituloCompeticao.setText(this.novoTorneio.getTitulo());
     }
 
     @FXML

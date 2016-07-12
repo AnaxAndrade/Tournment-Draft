@@ -160,7 +160,11 @@ public class Torneio {
     }
 
     public Competidor getVencedor(){
-        return this.getRonda(getRondaAtual()).getWinners().get(0);
+        try {
+            return this.getRonda(getRondaAtual()).getWinners().get(0);
+        }catch (WinnerDesconhecidoException e){
+            return null;
+        }
     }
 
     /**
@@ -177,33 +181,40 @@ public class Torneio {
 
         //Obtém vencedores da Ronda Atual
         //TODO Certificar que retorno de getWinners() é uma cópia e não referências
-        //Embora estou a remover de wins, NÃO devia remover também de SEUS LUGARES
-        List<Competidor> wins = getRonda(this.getRondaAtual()).getWinners();
-        int seguinte = this.getRondaAtual()+1;
+        //Embora estou a remover de wins, NÃO devia remover também de SEUS
+        try {
+            List<Competidor> wins = getRonda(this.getRondaAtual()).getWinners();
 
-        //Se esta é a ronda Final
-        if (seguinte > this.getRondas().size()){
-            this.setTerminado(true);
-            //O torneio terminou!
+            int seguinte = this.getRondaAtual()+1;
+
+            //Se esta é a ronda Final
+            if (seguinte > this.getRondas().size()){
+                this.setTerminado(true);
+                //O torneio terminou!
+                return false;
+            }
+
+            //Definir confrontos da próxima Ronda
+            for (int k=0; k < getRonda(seguinte).getConfrontos().size(); k++){
+                if (getRonda(seguinte).getConfrontos().get(k).getP1() == null
+                        && wins.size() > 0){
+                    getRonda(seguinte).getConfrontos().get(k).setP1(wins.remove(0));
+                }
+
+                if (getRonda(seguinte).getConfrontos().get(k).getP2() == null
+                        && wins.size() > 0){
+                    getRonda(seguinte).getConfrontos().get(k).setP2(wins.remove(0));
+                }
+            }
+
+
+            //Definir a próxima ronda como atual e esta como terminada
+            getRonda(this.getRondaAtual()).setTerminado(true);
+            this.setRondaAtual(seguinte);
+
+        }catch (WinnerDesconhecidoException e){
             return false;
         }
-
-        //Definir confrontos da próxima Ronda
-        for (int k=0; k < getRonda(seguinte).getConfrontos().size(); k++){
-            if (getRonda(seguinte).getConfrontos().get(k).getP1() == null
-                    && wins.size() > 0){
-                getRonda(seguinte).getConfrontos().get(k).setP1(wins.remove(0));
-            }
-
-            if (getRonda(seguinte).getConfrontos().get(k).getP2() == null
-                    && wins.size() > 0){
-                getRonda(seguinte).getConfrontos().get(k).setP2(wins.remove(0));
-            }
-        }
-
-        //Definir a próxima ronda como atual
-        this.setRondaAtual(seguinte);
-
         return true;
 
     }

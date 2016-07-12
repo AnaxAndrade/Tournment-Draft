@@ -9,14 +9,17 @@ import cv.frameworkers.tourdraft.model.Confronto;
 import cv.frameworkers.tourdraft.model.Ronda;
 import cv.frameworkers.tourdraft.model.Torneio;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ChoiceBoxTableCell;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -129,7 +132,36 @@ public class AreaCompeticaoController extends ChildScreenController implements I
                 };
             });
             colP2.setEditable(false);
-            tbl.getColumns().addAll(colP1, colS1, colS2, colP2);
+
+            //Coluna vencedor
+            TableColumn<Confronto, Number> colWin = new TableColumn<>("Vencedor");
+            colWin.setCellValueFactory(cellData -> cellData.getValue().winnerNumberProperty());
+            //Caso For -1(ou qualquer outro)
+            //mostrar célula vazia, caso contrário mostrar seu valor (Player N )
+            colWin.setCellFactory(ChoiceBoxTableCell.forTableColumn(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    if (object.intValue() ==  1){
+                        return "Player 1";
+                    }else if (object.intValue() == 2){
+                        return "Player 2";
+                    }else{
+                        return "";
+                    }
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    //Apanha o último caracter e converte para inteiro
+                    if (string.length() == 8){
+                        return Integer.parseInt(string.substring(string.length() - 1));
+                    }else{
+                        return -1;
+                    }
+                }
+            }, FXCollections.observableArrayList(-1, 1, 2)));
+
+            tbl.getColumns().addAll(colP1, colS1, colS2, colP2, colWin);
 
             vb.getChildren().addAll(lbl, tbl);
 
@@ -144,25 +176,34 @@ public class AreaCompeticaoController extends ChildScreenController implements I
             desenharEstado();
         }else {
             if (competicaoAtual.isTerminado()){
-                // Se o torneio termiou
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.initOwner(getAppMain().getMainStage());
-                alert.setTitle("Terminou!");
-                alert.setHeaderText("A Competição Terminou!");
-                alert.setContentText("O Vencedor é "+competicaoAtual.getVencedor().getNome());
+                if (competicaoAtual.getVencedor() != null){
+                    // Se o torneio termiou
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.initOwner(getAppMain().getMainStage());
+                    alert.setTitle("Terminou!");
+                    alert.setHeaderText("A Competição Terminou!");
+                    alert.setContentText("O Vencedor é "+competicaoAtual.getVencedor().getNome());
 
-                alert.showAndWait();
+                    alert.showAndWait();
+                }else{
+                    //Caso não esteja definido o vencedor da final
+                    alertDadosInsuficientes();
+                }
             }else {
-                //Caso todos os dados não foram preenchidos
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.initOwner(getAppMain().getMainStage());
-                alert.setTitle("Aviso!");
-                alert.setHeaderText("Preencha os dados");
-                alert.setContentText("Preencha os dados de todos os Confrontos!");
-
-                alert.showAndWait();
+                alertDadosInsuficientes();
             }
         }
+    }
+
+    public void alertDadosInsuficientes(){
+        //Caso todos os dados não foram preenchidos
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initOwner(getAppMain().getMainStage());
+        alert.setTitle("Aviso!");
+        alert.setHeaderText("Preencha os dados");
+        alert.setContentText("Preencha os dados de todos os Confrontos da ronda "+competicaoAtual.getRondaAtual()+" corretamente!");
+
+        alert.showAndWait();
     }
 
     @FXML
@@ -208,7 +249,7 @@ public class AreaCompeticaoController extends ChildScreenController implements I
                 setText(null);
                 setGraphic(null);
             } else if (isEditing()) {
-                //setText(null);
+                setText(null);
                 textField.setText(value.toString());
                 setGraphic(textField);
             } else {

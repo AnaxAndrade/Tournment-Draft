@@ -1,9 +1,12 @@
 package cv.frameworkers.tourdraft.model;
 
+import javafx.beans.Observable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 /**
  * Created by AnaxAndrade on 10-07-2016.
@@ -41,7 +44,24 @@ public class Confronto {
         this.s2 = new SimpleIntegerProperty(0);
         this.winnerNumber = new SimpleIntegerProperty(-1);
         this.winnerId = new SimpleIntegerProperty(-1);
+
+        s1.addListener((observable, oldValue, newValue) -> {
+            if(this.getS1() > this.getS2()){
+                this.setWinnerNumber(1);
+            }else if(this.getS2() > getS1()){
+                this.setWinnerNumber(2);
+            }
+        });
+
+        s2.addListener((observable, oldValue, newValue) -> {
+            if(this.getS1() > this.getS2()){
+                this.setWinnerNumber(1);
+            }else if(this.getS2() > getS1()){
+                this.setWinnerNumber(2);
+            }
+        });
     }
+
 
     public Confronto() {
         this(-1);
@@ -119,42 +139,31 @@ public class Confronto {
         this.winnerNumber.set(winnerNumber);
     }
 
-    public int getWinnerId() {
-        return winnerId.get();
+    public int getWinnerId()throws WinnerDesconhecidoException {
+        return getWinner().getId();
     }
 
     public SimpleIntegerProperty winnerIdProperty() {
         return winnerId;
     }
 
-    public void setWinnerId(int winnerId) throws Exception{
-        if (p1.get().getId() == winnerId) {
-            this.winnerId.set(winnerId);
-            this.setWinnerNumber(1);
-        }else if (p2.get().getId() == winnerId){
-            this.winnerId.set(winnerId);
-            this.setWinnerNumber(2);
-        }else {
-            throw new Exception("O competidor não está ligado a este confronto");
-        }
+    public Competidor getWinner() throws WinnerDesconhecidoException {
 
-    }
-
-    public Competidor getWinner(){
-        //TODO reDEFINIR LÓGICA DE VITÓRIA
-        if(getS1() > getS2()){
-            return getP1();
-        }else {
-            return getP2();
-        }
-        /*
         if (this.getWinnerNumber() == 1){
             return this.p1.get();
         }else if(this.getWinnerNumber() == 2){
             return this.p2.get();
-        }else {
-            return null;
+        }else {//Caso não esteja definido, verificar pontos
+            if(getS1() > getS2()){
+                return getP1();
+            }else if (getS1() < getS2()){
+                return getP2();
+            }else{
+                //Caso não foi nem definido o número nem têm pontos diferentes
+                throw new WinnerDesconhecidoException();
+
+            }
         }
-    */
+
     }
 }

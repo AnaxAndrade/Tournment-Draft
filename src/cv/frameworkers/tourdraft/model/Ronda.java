@@ -84,10 +84,14 @@ public class Ronda {
         this.confrontos.add(c);
     }
 
-    public List<Competidor> getWinners(){
+    public List<Competidor> getWinners() throws WinnerDesconhecidoException{
         List<Competidor> a = new ArrayList<>();
         for(Confronto c : this.getConfrontos()){
-            a.add(c.getWinner());
+            try {
+                a.add(c.getWinner());
+            }catch (WinnerDesconhecidoException e){
+                throw new WinnerDesconhecidoException("Vencedor Desconhecido para o confronto "+c.getId());
+            }
         }
 
         return a;
