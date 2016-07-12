@@ -57,6 +57,11 @@ public class AreaCompeticaoController extends ChildScreenController implements I
         if(competicaoAtual.getRondaAtual() < 1)
             competicaoAtual.gerarBaseBrackets(true);
 
+        desenharEstado();
+    }
+
+    private void desenharEstado(){
+        this.mainScroll.setContent(null);
         VBox vb = new VBox();
         vb.setFillWidth(true);
         for (int i=0; i < competicaoAtual.getRondas().size(); i++){
@@ -125,17 +130,40 @@ public class AreaCompeticaoController extends ChildScreenController implements I
             });
             colP2.setEditable(false);
             tbl.getColumns().addAll(colP1, colS1, colS2, colP2);
-            
+
             vb.getChildren().addAll(lbl, tbl);
 
             mainScroll.setContent(vb);
 
         }
-
     }
 
     @FXML
-    private void btnAvancarClick(ActionEvent e){}
+    private void btnAvancarClick(ActionEvent e){
+        if (competicaoAtual.passarProximaRonda()){
+            desenharEstado();
+        }else {
+            if (competicaoAtual.isTerminado()){
+                // Se o torneio termiou
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.initOwner(getAppMain().getMainStage());
+                alert.setTitle("Terminou!");
+                alert.setHeaderText("A Competição Terminou!");
+                alert.setContentText("O Vencedor é "+competicaoAtual.getVencedor().getNome());
+
+                alert.showAndWait();
+            }else {
+                //Caso todos os dados não foram preenchidos
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.initOwner(getAppMain().getMainStage());
+                alert.setTitle("Aviso!");
+                alert.setHeaderText("Preencha os dados");
+                alert.setContentText("Preencha os dados de todos os Confrontos!");
+
+                alert.showAndWait();
+            }
+        }
+    }
 
     @FXML
     private void btnExportarClick(ActionEvent e){}

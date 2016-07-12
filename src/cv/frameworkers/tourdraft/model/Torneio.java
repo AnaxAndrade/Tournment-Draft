@@ -159,7 +159,14 @@ public class Torneio {
 
     }
 
-    //Método para proceder para a próxima ronda (após todos os Confrontos da Ronda Atual)
+    public Competidor getVencedor(){
+        return this.getRonda(getRondaAtual()).getWinners().get(0);
+    }
+
+    /**
+     * Método para proceder para a próxima ronda (após todos os Confrontos da Ronda Atual)
+     * @return true se conseguiu processar a próxima ronda ou false, caso já termonou ou é a ronda final
+     * */
     public boolean passarProximaRonda(){
         //Se já terminou
         if (this.getRondaAtual() > this.getRondas().size() || this.isTerminado()){
@@ -175,7 +182,8 @@ public class Torneio {
         int seguinte = this.getRondaAtual()+1;
 
         //Se esta é a ronda Final
-        if (seguinte > this.getRondaAtual()){
+        if (seguinte > this.getRondas().size()){
+            this.setTerminado(true);
             //O torneio terminou!
             return false;
         }

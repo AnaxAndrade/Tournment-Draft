@@ -141,6 +141,13 @@ public class Confronto {
     }
 
     public Competidor getWinner(){
+        //TODO reDEFINIR LÓGICA DE VITÓRIA
+        if(getS1() > getS2()){
+            return getP1();
+        }else {
+            return getP2();
+        }
+        /*
         if (this.getWinnerNumber() == 1){
             return this.p1.get();
         }else if(this.getWinnerNumber() == 2){
@@ -148,6 +155,6 @@ public class Confronto {
         }else {
             return null;
         }
-
+    */
     }
 }
