@@ -68,6 +68,14 @@ public class AppMain extends Application {
         torneioAtual = id;
     }
 
+    //Define o TOrneio Atual como o Id propriamente dito do Torneio Atual
+    public void setTorneioAtual(int id){
+        for(int i = 0; i < this.torneios.size(); i++){
+            if (this.torneios.get(i).getId() == torneioAtual)
+                torneioAtual = this.torneios.get(i).getId();
+        }
+    }
+
     public Torneio getTorneioAtual() {
         for(int i = 0; i < this.torneios.size(); i++){
             if (this.torneios.get(i).getId() == torneioAtual)

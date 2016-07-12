@@ -43,7 +43,6 @@ public class NovoTorneioController extends ChildScreenController implements Init
     public void initialize(URL location, ResourceBundle resources) {
         menuIcon.setOnMouseClicked(e -> getBaseScreenController().setScreen(AppMain.TELA_INICIAL));
 
-        novoTorneio = new Torneio();
         inputsListView.setCellFactory(new Callback<ListView<Competidor>, ListCell<Competidor>>() {
             @Override
             public ListCell<Competidor> call(ListView<Competidor> param) {
@@ -63,6 +62,14 @@ public class NovoTorneioController extends ChildScreenController implements Init
             }
         });
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        novoTorneio = new Torneio();
         inputsListView.setItems(this.novoTorneio.getCompetidores());
 
     }

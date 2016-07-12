@@ -222,7 +222,7 @@ public class Torneio {
             //Loop para Atribuir confrontos a jogos em uma ronda
             for (int j = 0; j < SEL.numJogosRonda(r, qtd); j++){
                 jogo += 1;
-                int r_atual = j + 1;
+                int r_atual = j + 1;//NÚMERO(ID) DO CONFRONTO DENTRO DESTA RONDA
 
                 Confronto c = new Confronto(jogo);
                 //Enquanto estiver competidores, adicioná-los a confrontos(e removendo da lista)
@@ -233,6 +233,7 @@ public class Torneio {
 
                 //Player 2
                 //TODO Coment a eXPLICAR CASO DE BYES - depende do numero de jogos da primeira ronda
+                //TODO ?- aCRESCENTAR UM || numJogosRondaAtual() == NumJogosRondaAnterior() - Caso de 6 players
                 if (this.getCompetidores().size() > 0 && (r==0 || r_atual > SEL.numJogosRonda(r-1, qtd))){
                     c.setP2(this.getCompetidores().remove(0));
                 }
