@@ -51,10 +51,9 @@
       </AnchorPane>
    </top>
    <center>
-      <ScrollPane fx:id="mainScroll" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="501.0" prefWidth="797.0" />
-        </content>
-      </ScrollPane>
+      <ScrollPane fx:id="mainScroll" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="30.0" right="30.0" />
+         </BorderPane.margin></ScrollPane>
    </center>
 </BorderPane>

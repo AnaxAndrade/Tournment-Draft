@@ -8,9 +8,12 @@ import cv.frameworkers.tourdraft.model.Competidor;
 import cv.frameworkers.tourdraft.model.Confronto;
 import cv.frameworkers.tourdraft.model.Ronda;
 import cv.frameworkers.tourdraft.model.Torneio;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -61,25 +64,40 @@ public class AreaCompeticaoController extends ChildScreenController implements I
 
             //Criar Label
             Label lbl = new Label("Ronda "+ro.getId());
+            lbl.setPadding(new Insets(10, 0, 30, 0));
             lbl.setFont(new Font("Arial", 22));
 
             //Criar Tabela Com dados de todos os Confrontos
             TableView<Confronto> tbl = new TableView<>(ro.getConfrontos());
+            tbl.setEditable(true);
+            tbl.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             TableColumn<Confronto, String> colP1 = new TableColumn<>("Player 1");
-            colP1.setCellValueFactory(cellData -> cellData.getValue().getP1().nickProperty());
-
+            colP1.setCellValueFactory(cellData -> {
+                if (cellData.getValue().getP1() != null)
+                    return  cellData.getValue().getP1().nickProperty();
+                else
+                    return new SimpleStringProperty("");
+            });
+            colP1.setEditable(false);
 
             TableColumn<Confronto, Number> colS1 = new TableColumn<>("");
             colS1.setCellValueFactory(cellData -> cellData.getValue().s1Property());
+            colS1.setEditable(true);
             colS1.setCellFactory(col -> new IntegerEditingCell());
 
             TableColumn<Confronto, Number> colS2 = new TableColumn<>("");
             colS2.setCellValueFactory(cellData -> cellData.getValue().s2Property());
+            colS2.setEditable(true);
             colS2.setCellFactory(col -> new IntegerEditingCell());
 
             TableColumn<Confronto, String> colP2 = new TableColumn<>("Player 2");
-            colP2.setCellValueFactory(cellData -> cellData.getValue().getP2().nickProperty());
-
+            colP2.setCellValueFactory(cellData -> {
+                if (cellData.getValue().getP2() != null)
+                    return  cellData.getValue().getP2().nickProperty();
+                else
+                    return new SimpleStringProperty("");
+            });
+            colP2.setEditable(false);
             tbl.getColumns().addAll(colP1, colS1, colS2, colP2);
             
             vb.getChildren().addAll(lbl, tbl);
@@ -108,7 +126,10 @@ public class AreaCompeticaoController extends ChildScreenController implements I
         private final TextField textField = new TextField();
         private final Pattern intPattern = Pattern.compile("-?\\d+");
 
+
+
         public IntegerEditingCell() {
+            setAlignment(Pos.CENTER);
             textField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
                 if (! isNowFocused) {
                     processEdit();
@@ -133,7 +154,7 @@ public class AreaCompeticaoController extends ChildScreenController implements I
                 setText(null);
                 setGraphic(null);
             } else if (isEditing()) {
-                setText(null);
+                //setText(null);
                 textField.setText(value.toString());
                 setGraphic(textField);
             } else {
@@ -150,6 +171,9 @@ public class AreaCompeticaoController extends ChildScreenController implements I
                 textField.setText(value.toString());
                 setGraphic(textField);
                 setText(null);
+            }else{
+                textField.setText("");
+                setGraphic(textField);
             }
         }
 
@@ -164,7 +188,8 @@ public class AreaCompeticaoController extends ChildScreenController implements I
         @Override
         public void commitEdit(Number value) {
             super.commitEdit(value);
-            ((Confronto)this.getTableRow().getItem()).setS1(value.intValue());
+
+           // ((Confronto)this.getTableRow().getItem()).setS1(value.intValue());
         }
     }
 }
