@@ -64,12 +64,18 @@ public class AreaCompeticaoController extends ChildScreenController implements I
 
             //Criar Label
             Label lbl = new Label("Ronda "+ro.getId());
-            lbl.setPadding(new Insets(10, 0, 30, 0));
+            lbl.setPadding(new Insets(30, 0, 10, 0));
             lbl.setFont(new Font("Arial", 22));
 
             //Criar Tabela Com dados de todos os Confrontos
             TableView<Confronto> tbl = new TableView<>(ro.getConfrontos());
-            tbl.setEditable(true);
+
+            //Editar Somente a ronda atual
+            if (ro.getId() == competicaoAtual.getRondaAtual()){
+                tbl.setEditable(true);
+            }else {
+                tbl.setEditable(false);
+            }
             tbl.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             TableColumn<Confronto, String> colP1 = new TableColumn<>("Player 1");
             colP1.setCellValueFactory(cellData -> {
@@ -77,6 +83,16 @@ public class AreaCompeticaoController extends ChildScreenController implements I
                     return  cellData.getValue().getP1().nickProperty();
                 else
                     return new SimpleStringProperty("");
+            });
+            colP1.setCellFactory(cell -> {
+                return new TableCell<Confronto, String>(){
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setAlignment(Pos.CENTER);
+                        setText(item);
+                    }
+                };
             });
             colP1.setEditable(false);
 
@@ -96,6 +112,16 @@ public class AreaCompeticaoController extends ChildScreenController implements I
                     return  cellData.getValue().getP2().nickProperty();
                 else
                     return new SimpleStringProperty("");
+            });
+            colP2.setCellFactory(cell -> {
+                return new TableCell<Confronto, String>(){
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setAlignment(Pos.CENTER);
+                        setText(item);
+                    }
+                };
             });
             colP2.setEditable(false);
             tbl.getColumns().addAll(colP1, colS1, colS2, colP2);

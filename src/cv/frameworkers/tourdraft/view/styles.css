@@ -20,3 +20,11 @@
 .jfx-hamburger StackPane{
     -fx-background-color : #262626;
 }
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}

@@ -68,7 +68,7 @@ public class RootScreenController extends StackPane {
             if (!getChildren().isEmpty()) {    //if there is more than one screen
                 Timeline fade = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),
-                        new KeyFrame(new Duration(500), new EventHandler<ActionEvent>() {
+                        new KeyFrame(new Duration(200), new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent t) {
                                 getChildren().remove(0);                    //remove the displayed screen
@@ -76,7 +76,7 @@ public class RootScreenController extends StackPane {
                                 screensControllers.get(name).onResume();
                                 Timeline fadeIn = new Timeline(
                                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
-                                        new KeyFrame(new Duration(500), new KeyValue(opacity, 1.0)));
+                                        new KeyFrame(new Duration(200), new KeyValue(opacity, 1.0)));
                                 fadeIn.play();
                             }
                         }, new KeyValue(opacity, 0.0)));
